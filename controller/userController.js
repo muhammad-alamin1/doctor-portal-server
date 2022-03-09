@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const User = require("../model/User");
 
 // sign up
@@ -35,7 +36,51 @@ const userInfo = async(req, res) => {
     }
 }
 
+// user login 
+const userLoginPostController = async(req, res, next) => {
+    try {
+        const user = await User.findOne({email: req.body.email});
+        
+        if(user && user._id){
+            // check valid pass
+            const isValidPassword = await bcrypt.compare(req.body.password, user.password);
+
+            if(isValidPassword) {
+                // generate user object
+                const userObject = {
+                    userId: user._id,
+                    username: user.userName,
+                    email: user.email
+                }
+                
+                // generate token
+                const token = jwt.sign(userObject, process.env.JWT_SECRET, {
+                    expiresIn: process.env.JWT_EXPIRES
+                });
+                
+                // set cookie
+                res.cookie(process.env.COOKIE_NAME, token, {
+                    maxAge: process.env.JWT_EXPIRES
+                });
+                console.log(user)
+                next();
+            } else {
+                res.status(401).json({
+                    message: `Authentication failed.!`
+                })
+            }
+        } else {
+            res.status(401).json({
+                message: `Authentication failed.!`
+            })
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 module.exports = {
     userSignupPostController,
-    userInfo
+    userInfo,
+    userLoginPostController
 }

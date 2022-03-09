@@ -1,12 +1,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
 
 
 const appMiddleware = [
-    bodyParser.json(),
     cors(),
-    express.static('public'),
+    express.json(),
+    express.urlencoded({ extended: true }),
+    cookieParser()
 ];
 
 

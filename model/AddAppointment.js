@@ -1,4 +1,4 @@
-const {Schema, model} = require('mongoose');
+const { Schema, model } = require('mongoose');
 
 const addAppointmentSchema = new Schema({
     name: {
@@ -25,7 +25,7 @@ const addAppointmentSchema = new Schema({
     weight: {
         type: Number,
     }
-}, {timestamps: true});
+}, { timestamps: true });
 
 const AddAppointment = model('AddAppointment', addAppointmentSchema);
 
