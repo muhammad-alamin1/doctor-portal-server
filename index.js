@@ -8,9 +8,7 @@ const app = express();
 
 // import middleware & routes
 const appMiddleware = require('./middleware/appMiddleware');
-const addAppointmentRouter = require('./routes/addAppointmentRoute');
-const userRouter = require('./routes/allUserRoute');
-const doctorRouter = require('./routes/doctorRoute');
+const allRoutes = require('./routes/routes');
 
 // set static
 app.use(express.static(path.join(__dirname, 'public')));
@@ -19,16 +17,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(appMiddleware);
 
 // use routes
-app.use('/users', userRouter);
-app.use('/doctor', doctorRouter);
-app.use('/addAppointment', addAppointmentRouter);
-
-app.get('/', (req, res) => {
-    res.status(200).json({
-        success: true,
-        message: 'Root API Server'
-    })
-})
+allRoutes(app);
 
 // db connection uri
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.jdxha.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
@@ -51,10 +40,6 @@ db.once("open", () => {
 });
 
 // TODO remove wcBF5XduFsAM4Uq
-
-// db connection
-// instance.connect((err, client) => {
-
 
 //     if (err) console.log(err)
 //     else {
