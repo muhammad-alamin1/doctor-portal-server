@@ -3,6 +3,7 @@ const userRouter = require("./allUserRoute");
 const contactRouter = require("./contactRoute");
 const dashboardRouter = require("./dashboardRoute");
 const doctorRouter = require("./doctorRoute");
+const prescriptionRoute = require("./prescriptionRoute");
 const reviewRouter = require("./reviewRoute");
 const rootRouter = require("./rootRoute");
 
@@ -18,6 +19,10 @@ const routes = [
     {
         path: '/addAppointment',
         handler: addAppointmentRouter
+    },
+    {
+        path: '/prescription',
+        handler: prescriptionRoute
     },
     {
         path: '/dashboard',
