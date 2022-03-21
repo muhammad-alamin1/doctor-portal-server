@@ -16,6 +16,12 @@ const doctorSchema = new Schema({
         type: String,
         required: true,
     },
+    department: {
+        type: String,
+    },
+    date: {
+        type: String
+    },
     images: {
         type: String,
         required: true,

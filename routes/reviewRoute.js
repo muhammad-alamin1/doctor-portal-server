@@ -4,8 +4,8 @@ const { reviewPostController, reviewGetController } = require('../controller/rev
 const upload = require('../middleware/uploadMiddleware');
 
 
-reviewRouter.post('/review', upload.single('avatar'), reviewPostController);
-reviewRouter.get('/review', reviewGetController);
+reviewRouter.post('/', upload.single('avatar'), reviewPostController);
+reviewRouter.get('/', reviewGetController);
 
 
 module.exports = reviewRouter;

@@ -1,6 +1,7 @@
 const addAppointmentRouter = require("./addAppointmentRoute");
 const userRouter = require("./allUserRoute");
 const contactRouter = require("./contactRoute");
+const dashboardRouter = require("./dashboardRoute");
 const doctorRouter = require("./doctorRoute");
 const reviewRouter = require("./reviewRoute");
 const rootRouter = require("./rootRoute");
@@ -20,6 +21,10 @@ const routes = [
     },
     {
         path: '/dashboard',
+        handler: dashboardRouter
+    },
+    {
+        path: '/review',
         handler: reviewRouter
     },
     {
