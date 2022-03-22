@@ -11,10 +11,6 @@ const contactPostController = async (req, res) => {
         });
 
         await newContact.save();
-        res.status(200).json({
-            success: true,
-            message: `Contact updated successfully.!`
-        });
 
     } catch (error) {
         console.log(error)
