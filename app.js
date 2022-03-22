@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
+const cors = require('cors');
 
 // app
 const app = express();
@@ -12,6 +13,7 @@ const allRoutes = require('./routes/routes');
 
 // set static
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cors());
 
 // use middleware 
 app.use(appMiddleware);
