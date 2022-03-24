@@ -1,4 +1,4 @@
-# A RESTfull API Server (MVC)
+# A RESTfull API Server (REST API)
 
 * User sign up & sign in (JWT authentication)
 * Logged in user can give review
